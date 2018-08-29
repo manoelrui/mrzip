@@ -1,10 +1,12 @@
 #ifndef RLE_H
 #define RLE_H
+#include <string>
+
+using namespace std;
 
 class RLE {
     public:
-        void compress(char data[], int size, char** out);
-        void decompress(char data[], int size, char** out);
+        string compress(string data);
 };
 
 #endif

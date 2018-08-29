@@ -1,30 +1,20 @@
 #include "../../include/RLE.h"
-#include <map>
 #include <string>
 
-void RLE::compress(char data[], int size, char** out) {   
-    std::map<char, int> counter;
+using namespace std;
 
-    for(int i = 0; i < size; i++) {
-        char key = data[i];
-        std::map<char, int>::iterator it = counter.lower_bound(key);
-        if (it != counter.end()) {
-            counter[key]++;
-        } else {
-            counter[key] = 0;    
+string RLE::compress(string data) {   
+    int counter;
+    string enconding = "";
+
+    for (int i = 0; i < data[i]; i++) {
+        counter = 1;
+        while(data[i] == data[i + 1]) {
+            counter++;
+            i++;
         }
+        enconding += to_string(counter) + data[i];
     }
     
-    std::string compressString = "";
-    for(const auto &keyValue: counter) {
-        compressString += keyValue.second;
-        compressString += keyValue.first;
-    }
-
-    *out = new char[compressString.length()];   
-    compressString.copy(*out, compressString.length());
-}
-
-void RLE::decompress(char data[], int size, char** out) {
-
+    return enconding;
 }
